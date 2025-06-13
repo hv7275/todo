@@ -16,7 +16,7 @@ def add_task(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('todo-home')
     else:
         form = TaskForm()
     return render(request, 'list/add_list.html', {'form': form})
@@ -27,7 +27,7 @@ def update_task(request, task_id):
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('todo-home')
     else:
         form = TaskForm(instance=task)
     return render(request, 'list/update_task.html', {'form': form})
@@ -35,4 +35,4 @@ def update_task(request, task_id):
 def delete(request, task_id):
     task = Task.objects.get(id=task_id)
     task.delete()
-    return redirect('home')
+    return redirect('todo-home')
