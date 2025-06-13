@@ -1,7 +1,33 @@
-{% extends 'list/base.html' %}
+{% extends 'base.html' %}
 {% block title %}Your Tasks{% endblock %}
 
 {% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'todo-home' %}">TodoApp</a>
+
+    <div class="collapse navbar-collapse justify-content-end">
+      <ul class="navbar-nav">
+
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+            </form>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="btn btn-outline-primary btn-sm" href="{% url 'login' %}">Login</a>
+          </li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>Your Tasks</h2>
     <a href="{% url 'add_task' %}" class="btn btn-success">+ Add Task</a>
