@@ -8,5 +8,5 @@ class UserProfile(models.Model):
   profile_pic = models.ImageField(upload_to='account/', blank=True, null=True)
   
   def __str__(self):
-    return self.user
+    return self.user.username
   

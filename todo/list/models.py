@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 class Task(models.Model):
   
@@ -12,7 +13,7 @@ class Task(models.Model):
     ('Ohter', 'Other'),
   ]
   
-  
+  user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
   title = models.CharField(max_length=200)
   completed = models.BooleanField(default=False)
   created_at = models.DateTimeField(default=timezone.now)
