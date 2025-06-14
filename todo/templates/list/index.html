@@ -33,12 +33,14 @@
     <a href="{% url 'add_task' %}" class="btn btn-success">+ Add Task</a>
 </div>
 
-<form method="get" class="mb-3">
-    <div class="input-group">
-        <input type="text" name="q" class="form-control" placeholder="Search tasks..." value="{{ request.GET.q }}">
-        <button class="btn btn-outline-primary">Search</button>
-    </div>
+<form method="get" class="mb-3 d-flex gap-2">
+    <input type="text" name="q" class="form-control" placeholder="Search tasks..." value="{{ request.GET.q }}">
+    <button type="submit" class="btn btn-outline-primary">Search</button>
+    {% if request.GET.q %}
+        <a href="{% url 'todo-home' %}" class="btn btn-outline-secondary">Clear</a>
+    {% endif %}
 </form>
+
 
 {% if tasks %}
     <ul class="list-group shadow">

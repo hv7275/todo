@@ -32,14 +32,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     {% block scripts %}
     <script>
-        setTimeout(() => {
-            const alerts = document.querySelectorAll('.alert');
-            alerts.forEach(alert => {
-                alert.classList.add('fade');
-                setTimeout(() => alert.remove(), 500);
-            });
-        }, 3000);
+        document.addEventListener('DOMContentLoaded', () => {
+            // Auto-hide alerts after 3 seconds
+            setTimeout(() => {
+                const alerts = document.querySelectorAll('.alert');
+                alerts.forEach(alert => {
+                    alert.classList.add('fade');
+                    setTimeout(() => alert.remove(), 500);
+                });
+            }, 3000);
+
+            // Auto-redirect when search is cleared
+            const searchInput = document.querySelector('input[name="q"]');
+            if (searchInput) {
+                searchInput.addEventListener('input', function () {
+                    if (this.value.trim() === '') {
+                        setTimeout(() => {
+                            window.location.href = "{% url 'todo-home' %}";
+                        }, 300);
+                    }
+                });
+            }
+        });
     </script>
-    {% endblock %}
+{% endblock %}
+
 </body>
 </html>
