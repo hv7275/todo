@@ -6,6 +6,9 @@ class Task(models.Model):
   CATEGORY_CHOICES = [
     ('Work', 'Work'),
     ('Peronal', 'Personal'),
+    ('Play', 'Play'),
+    ('Sleep', 'Sleep'),
+    ('Wake-Up-Time', 'Wake-Up'),
     ('Ohter', 'Other'),
   ]
   
@@ -13,7 +16,8 @@ class Task(models.Model):
   title = models.CharField(max_length=200)
   completed = models.BooleanField(default=False)
   created_at = models.DateTimeField(default=timezone.now)
-  category = models.CharField(max_length=8, choices=CATEGORY_CHOICES, default='Work')
+  category = models.CharField(max_length=12, choices=CATEGORY_CHOICES, default='Work')
+
   
   def __str__(self):
     return self.title

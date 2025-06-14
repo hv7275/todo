@@ -30,7 +30,7 @@ def update_task(request, task_id):
             return redirect('todo-home')
     else:
         form = TaskForm(instance=task)
-    return render(request, 'list/update_task.html', {'form': form})
+    return render(request, 'list/update.html', {'form': form})
 
 def delete(request, task_id):
     task = Task.objects.get(id=task_id)
